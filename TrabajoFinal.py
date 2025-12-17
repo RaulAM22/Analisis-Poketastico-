@@ -203,3 +203,31 @@ plt.grid(axis="y", linestyle="--", alpha=0.6)
 plt.tight_layout()
 plt.savefig("figures/frecuencia_tipos.png")
 plt.show()
+
+# =========================================
+# 5. GRÁFICOS COMPARATIVOS (RAÚL)
+# =========================================
+
+plt.figure(figsize=(7,4))
+
+data = [df["salud"], df["ataque"], df["defensa"]]
+labels = ["Salud", "Ataque", "Defensa"]
+
+plt.boxplot(
+    data,
+    labels=labels,
+    patch_artist=True,
+    showmeans=True,
+    meanprops={
+        "marker": "o",
+        "markerfacecolor": "red",
+        "markeredgecolor": "black",
+        "markersize": 7
+    }
+)
+
+plt.title("Comparación de Estadísticas Base")
+plt.ylabel("Valor")
+plt.grid(axis="y", linestyle="--", alpha=0.6)
+plt.savefig("figures/boxplot_stats.png")
+plt.show()
