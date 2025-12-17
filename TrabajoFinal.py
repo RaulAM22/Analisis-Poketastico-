@@ -231,3 +231,16 @@ plt.ylabel("Valor")
 plt.grid(axis="y", linestyle="--", alpha=0.6)
 plt.savefig("figures/boxplot_stats.png")
 plt.show()
+
+# =========================================
+# 6.1 ÍNDICE DE PODER Y RANKING (DANI)
+# =========================================
+
+df["indice_poder"] = (
+    0.4 * df["ataque"] +
+    0.3 * df["defensa"] +
+    0.3 * df["salud"]
+).round(2)
+
+top10_poder = df.sort_values("indice_poder", ascending=False).head(10)
+display(top10_poder)
