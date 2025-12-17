@@ -11,6 +11,7 @@ import json
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+import seaborn as sns
 
 # =========================================
 # 1. CONSUMO DE LA API (DANI)
@@ -129,3 +130,62 @@ def save_table_image(df_table, title, path):
 save_table_image(means_df, "Media de Estadísticas", "figures/tabla_medias.png")
 save_table_image(medians_df, "Mediana de Estadísticas", "figures/tabla_medianas.png")
 save_table_image(std_df, "Desviación Estándar", "figures/tabla_desviacion.png")
+
+# =========================================
+# 3.1 ESTADÍSTICAS CUALITATIVAS – TIPOS (MEGUMI)
+# =========================================
+
+print("📊 ESTADÍSTICAS CUALITATIVAS: TIPO DE POKÉMON\n")
+
+types_expanded = df["type"].str.split(" / ").explode()
+
+tabla_frecuencia = types_expanded.value_counts().to_frame(name='Frecuencia Absoluta')
+tabla_frecuencia['Porcentaje (%)'] = (types_expanded.value_counts(normalize=True) * 100).round(2)
+tabla_frecuencia.index.name = 'Tipo'
+
+print("📌 Tabla de Distribución de Frecuencias:")
+display(tabla_frecuencia.style.bar(subset=['Frecuencia Absoluta'], color='#d65f5f'))
+# =========================================
+pokemon_colors = {
+    'poison': '#A33EA1',   # Veneno
+    'bug': '#A6B91A',      # Bicho
+    'normal': '#A8A77A',   # Normal
+    'flying': '#A98FF3',   # Volador
+    'grass': '#7AC74C',    # Planta
+    'fire': '#EE8130',     # Fuego
+    'ground': '#E2BF65',   # Tierra
+    'fairy': '#D685AD',    # Hada
+    'water': '#6390F0',    # Agua
+    'electric': '#F7D02C', 
+    'fighting': '#C22E28',
+    'psychic': '#F95587',
+    'rock': '#B6A136',
+    'ghost': '#735797',
+    'ice': '#96D9D6',
+    'dragon': '#6F35FC',
+    'steel': '#B7B7CE',
+    'dark': '#705746'
+}
+
+# =========================================
+# GENERAR EL GRÁFICO
+# =========================================
+plt.figure(figsize=(12, 8))
+
+grafico = sns.countplot(
+    y=types_expanded,                          
+    order=types_expanded.value_counts().index, 
+    palette=pokemon_colors,          
+    edgecolor='black', linewidth=0.5          
+)
+
+plt.title('Distribución de Tipos de Pokémon', fontsize=16, fontweight='bold')
+plt.xlabel('Cantidad de Pokémon', fontsize=12)
+plt.ylabel('Tipo Elemental', fontsize=12)
+plt.grid(axis='x', linestyle='--', alpha=0.5)
+
+# Añadir los números al final de las barras 
+for container in grafico.containers:
+    grafico.bar_label(container, padding=3, fontweight='bold', fmt='%d')
+
+plt.show()
