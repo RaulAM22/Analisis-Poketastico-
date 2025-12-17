@@ -263,3 +263,17 @@ promedios_por_tipo = (
 )
 
 display(promedios_por_tipo)}
+
+# =========================================
+# 6.3 VISUALIZACIÓN – ÍNDICE DE PODER (LARRY)
+# =========================================
+
+plt.figure(figsize=(10,5))
+promedios_por_tipo["indice_poder"].plot(kind="bar", edgecolor="black")
+plt.title("Índice de Poder Promedio por Tipo")
+plt.xlabel("Tipo")
+plt.ylabel("Índice de Poder")
+plt.grid(axis="y", linestyle="--", alpha=0.6)
+plt.tight_layout()
+plt.savefig("figures/indice_poder_por_tipo.png")
+plt.show()
