@@ -101,7 +101,7 @@ traduccion_tipos = {
 # =========================================
 
 desc = df.describe().round(2)
-display(desc)
+print(desc)
 
 
 # =========================================
@@ -144,7 +144,7 @@ tabla_frecuencia['Porcentaje (%)'] = (types_expanded.value_counts(normalize=True
 tabla_frecuencia.index.name = 'Tipo'
 
 print("📌 Tabla de Distribución de Frecuencias:")
-display(tabla_frecuencia.style.bar(subset=['Frecuencia Absoluta'], color='#d65f5f'))
+print(tabla_frecuencia.style.bar(subset=['Frecuencia Absoluta'], color='#d65f5f'))
 # =========================================
 pokemon_colors = {
     'poison': '#A33EA1',   # Veneno
