@@ -243,7 +243,7 @@ df["indice_poder"] = (
 ).round(2)
 
 top10_poder = df.sort_values("indice_poder", ascending=False).head(10)
-display(top10_poder)
+print(top10_poder)
 
 # =========================================
 # 6.2 COMPARACIÓN POR TIPO (GIANE)
@@ -262,7 +262,7 @@ promedios_por_tipo = (
     .sort_values(by="indice_poder", ascending=False)
 )
 
-display(promedios_por_tipo)}
+print(promedios_por_tipo)
 
 # =========================================
 # 6.3 VISUALIZACIÓN – ÍNDICE DE PODER (LARRY)
