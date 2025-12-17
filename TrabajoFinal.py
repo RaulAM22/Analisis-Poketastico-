@@ -93,3 +93,39 @@ traduccion_tipos = {
     "steel": "Acero",
     "fairy": "Hada"
 }
+
+
+# =========================================
+# 3. ESTADÍSTICA DESCRIPTIVA (LARRY)
+# =========================================
+
+desc = df.describe().round(2)
+display(desc)
+
+
+# =========================================
+# 3.1 MEDIDAS ESTADÍSTICAS (LARRY)
+# =========================================
+
+means_df = df[["salud", "ataque", "defensa"]].mean().to_frame("Media")
+medians_df = df[["salud", "ataque", "defensa"]].median().to_frame("Mediana")
+std_df = df[["salud", "ataque", "defensa"]].std().to_frame("Desviación Estándar")
+
+
+def save_table_image(df_table, title, path):
+    fig, ax = plt.subplots(figsize=(6, 2))
+    ax.axis("off")
+    ax.table(
+        cellText=df_table.round(2).values,
+        colLabels=df_table.columns,
+        rowLabels=df_table.index,
+        loc="center"
+    )
+    plt.title(title)
+    plt.savefig(path, bbox_inches="tight")
+    plt.close()
+
+
+save_table_image(means_df, "Media de Estadísticas", "figures/tabla_medias.png")
+save_table_image(medians_df, "Mediana de Estadísticas", "figures/tabla_medianas.png")
+save_table_image(std_df, "Desviación Estándar", "figures/tabla_desviacion.png")
