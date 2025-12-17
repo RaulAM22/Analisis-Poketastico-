@@ -189,3 +189,91 @@ for container in grafico.containers:
     grafico.bar_label(container, padding=3, fontweight='bold', fmt='%d')
 
 plt.show()
+
+# =========================================
+# 4. GRÁFICOS DESCRIPTIVOS
+# =========================================
+
+plt.figure(figsize=(10,5))
+freq_types.plot(kind="bar", edgecolor="black")
+plt.title("Frecuencia de Tipos de Pokémon")
+plt.xlabel("Tipo")
+plt.ylabel("Cantidad")
+plt.grid(axis="y", linestyle="--", alpha=0.6)
+plt.tight_layout()
+plt.savefig("figures/frecuencia_tipos.png")
+plt.show()
+
+# =========================================
+# 5. GRÁFICOS COMPARATIVOS (RAÚL)
+# =========================================
+
+plt.figure(figsize=(7,4))
+
+data = [df["salud"], df["ataque"], df["defensa"]]
+labels = ["Salud", "Ataque", "Defensa"]
+
+plt.boxplot(
+    data,
+    labels=labels,
+    patch_artist=True,
+    showmeans=True,
+    meanprops={
+        "marker": "o",
+        "markerfacecolor": "red",
+        "markeredgecolor": "black",
+        "markersize": 7
+    }
+)
+
+plt.title("Comparación de Estadísticas Base")
+plt.ylabel("Valor")
+plt.grid(axis="y", linestyle="--", alpha=0.6)
+plt.savefig("figures/boxplot_stats.png")
+plt.show()
+
+# =========================================
+# 6.1 ÍNDICE DE PODER Y RANKING (DANI)
+# =========================================
+
+df["indice_poder"] = (
+    0.4 * df["ataque"] +
+    0.3 * df["defensa"] +
+    0.3 * df["salud"]
+).round(2)
+
+top10_poder = df.sort_values("indice_poder", ascending=False).head(10)
+display(top10_poder)
+
+# =========================================
+# 6.2 COMPARACIÓN POR TIPO (GIANE)
+# =========================================
+
+df_tipos = df.copy()
+df_tipos["tipo"] = df_tipos["tipo"].str.split(" / ")
+df_tipos = df_tipos.explode("tipo")
+df_tipos["tipo"] = df_tipos["tipo"].map(traduccion_tipos)
+
+promedios_por_tipo = (
+    df_tipos
+    .groupby("tipo")[["salud", "ataque", "defensa", "indice_poder"]]
+    .mean()
+    .round(2)
+    .sort_values(by="indice_poder", ascending=False)
+)
+
+display(promedios_por_tipo)}
+
+# =========================================
+# 6.3 VISUALIZACIÓN – ÍNDICE DE PODER (LARRY)
+# =========================================
+
+plt.figure(figsize=(10,5))
+promedios_por_tipo["indice_poder"].plot(kind="bar", edgecolor="black")
+plt.title("Índice de Poder Promedio por Tipo")
+plt.xlabel("Tipo")
+plt.ylabel("Índice de Poder")
+plt.grid(axis="y", linestyle="--", alpha=0.6)
+plt.tight_layout()
+plt.savefig("figures/indice_poder_por_tipo.png")
+plt.show()
