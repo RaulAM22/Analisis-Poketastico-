@@ -189,3 +189,17 @@ for container in grafico.containers:
     grafico.bar_label(container, padding=3, fontweight='bold', fmt='%d')
 
 plt.show()
+
+# =========================================
+# 4. GRÁFICOS DESCRIPTIVOS
+# =========================================
+
+plt.figure(figsize=(10,5))
+freq_types.plot(kind="bar", edgecolor="black")
+plt.title("Frecuencia de Tipos de Pokémon")
+plt.xlabel("Tipo")
+plt.ylabel("Cantidad")
+plt.grid(axis="y", linestyle="--", alpha=0.6)
+plt.tight_layout()
+plt.savefig("figures/frecuencia_tipos.png")
+plt.show()
