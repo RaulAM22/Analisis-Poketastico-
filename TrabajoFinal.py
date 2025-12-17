@@ -137,14 +137,14 @@ save_table_image(std_df, "Desviación Estándar", "figures/tabla_desviacion.png"
 
 print("📊 ESTADÍSTICAS CUALITATIVAS: TIPO DE POKÉMON\n")
 
-types_expanded = df["type"].str.split(" / ").explode()
+types_expanded = df["tipo"].str.split(" / ").explode()
 
 tabla_frecuencia = types_expanded.value_counts().to_frame(name='Frecuencia Absoluta')
 tabla_frecuencia['Porcentaje (%)'] = (types_expanded.value_counts(normalize=True) * 100).round(2)
 tabla_frecuencia.index.name = 'Tipo'
 
 print("📌 Tabla de Distribución de Frecuencias:")
-print(tabla_frecuencia.style.bar(subset=['Frecuencia Absoluta'], color='#d65f5f'))
+print(tabla_frecuencia)
 # =========================================
 pokemon_colors = {
     'poison': '#A33EA1',   # Veneno
