@@ -244,3 +244,22 @@ df["indice_poder"] = (
 
 top10_poder = df.sort_values("indice_poder", ascending=False).head(10)
 display(top10_poder)
+
+# =========================================
+# 6.2 COMPARACIÓN POR TIPO (GIANE)
+# =========================================
+
+df_tipos = df.copy()
+df_tipos["tipo"] = df_tipos["tipo"].str.split(" / ")
+df_tipos = df_tipos.explode("tipo")
+df_tipos["tipo"] = df_tipos["tipo"].map(traduccion_tipos)
+
+promedios_por_tipo = (
+    df_tipos
+    .groupby("tipo")[["salud", "ataque", "defensa", "indice_poder"]]
+    .mean()
+    .round(2)
+    .sort_values(by="indice_poder", ascending=False)
+)
+
+display(promedios_por_tipo)}
