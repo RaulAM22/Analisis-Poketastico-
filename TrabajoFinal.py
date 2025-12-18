@@ -277,3 +277,36 @@ plt.grid(axis="y", linestyle="--", alpha=0.6)
 plt.tight_layout()
 plt.savefig("figures/indice_poder_por_tipo.png")
 plt.show()
+
+
+
+#========================================
+# CONCLUSIÓN
+#========================================
+print("""
+CONCLUSIÓN DEL PROYECTO
+
+El presente código desarrolla un análisis estadístico completo de los primeros 100 Pokémon
+utilizando datos obtenidos directamente desde la PokeAPI. En una primera etapa, se realiza
+el consumo de la API para recolectar información relevante como nombre, tipo, peso, altura,
+experiencia base, estadísticas de combate y sprites oficiales, los cuales son almacenados
+tanto en formato JSON como en un archivo CSV estructurado.
+
+Posteriormente, los datos son limpiados y organizados en un DataFrame, lo que permite aplicar
+estadística descriptiva sobre variables cuantitativas clave como salud, ataque y defensa.
+Se calculan medidas de tendencia central y dispersión (media, mediana y desviación estándar),
+facilitando una comprensión general del comportamiento de las estadísticas base de los Pokémon.
+
+Además, se realiza un análisis cualitativo del tipo elemental, construyendo tablas de frecuencia
+y gráficos que muestran la distribución de tipos, permitiendo identificar los tipos más comunes
+dentro de la muestra analizada. Estos resultados son reforzados mediante visualizaciones claras
+y comparativas.
+
+Finalmente, se define un índice de poder que combina ataque, defensa y salud, lo que permite
+establecer un ranking de los Pokémon más fuertes y comparar el poder promedio entre los distintos
+tipos elementales. En conjunto, este proyecto demuestra cómo el uso de APIs, Python y técnicas
+estadísticas puede transformar datos crudos en información significativa, visual y útil para
+la toma de decisiones y el análisis exploratorio.
+""")
+
+
