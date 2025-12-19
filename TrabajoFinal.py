@@ -193,6 +193,8 @@ plt.show()
 # =========================================
 # 4. GRÁFICOS DESCRIPTIVOS
 # =========================================
+freq_types = types_expanded.value_counts()
+
 
 plt.figure(figsize=(10,5))
 freq_types.plot(kind="bar", edgecolor="black")
