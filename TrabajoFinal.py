@@ -1,7 +1,14 @@
 # =========================================
 # PROYECTO LP – ANÁLISIS ESTADÍSTICO CON POKEAPI
 # =========================================
-
+#============INTEGRANTES===================
+# - Raul Eduardo Anton Mogollon - 20240694
+# - Daniela Rosa Tineo Balcázar - 20231510
+# - Fabricio Rodrigo Barrientos Mauricio - 20240697
+# - Harley Steve Puma Vilcahuamán - 20231506
+# - Gianella Alejandra Cruz Lozano - 20240705
+# - Hellary Mayté Castillo Flores - 20240699
+# - María Megumi Montero Balcázar  - 20241391
 # =========================================
 # 0. IMPORTACIÓN DE LIBRERÍAS
 # =========================================
